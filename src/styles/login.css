@@ -1,0 +1,92 @@
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.container input:focus {
+  outline: none;
+}
+
+.container select:focus {
+  outline: none;
+}
+
+.container .selectOption {
+  margin: 5px;
+  height: 45px;
+  width: 52%;
+  border-radius: 8px;
+  padding: 5px;
+  border-width: 1.8px;
+  border-color: black;
+  font-size: 16px;
+}
+
+.container .login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
+}
+
+.container .login .textFeild {
+  margin: 5px;
+  height: 35px;
+  width: 50%;
+  border-radius: 8px;
+  padding: 5px;
+  border-width: 1.8px;
+  border-color: grey;
+  font-size: 16px;
+}
+
+.container .login .loginText {
+  font-family: "Pacifico";
+  font-size: 24px;
+  color: black;
+}
+
+.container .login .loginButton {
+  margin: 5px;
+  height: 40px;
+  width: 52.5%;
+  border-radius: 8px;
+  background-color: black;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.container .login .emergencyButton {
+  margin: 5px;
+  height: 40px;
+  width: 52.5%;
+  border-radius: 8px;
+  background-color: red;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  border: none;
+}
+/*# sourceMappingURL=login.css.map */

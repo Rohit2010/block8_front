@@ -1,0 +1,16 @@
+.chat_list {
+  width: 100%;
+  padding: 5px;
+}
+
+.chat_list .textFeild {
+  margin: 5px;
+  height: 35px;
+  width: 94%;
+  border-radius: 8px;
+  padding: 5px;
+  border-width: 1.8px;
+  border-color: grey;
+  font-size: 16px;
+}
+/*# sourceMappingURL=chatList.css.map */

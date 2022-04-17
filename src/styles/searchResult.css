@@ -1,0 +1,12 @@
+.followButton {
+  color: black;
+  background-color: #f9c904;
+  padding: 2px 14px 2px 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 540;
+  border: 1px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=searchResult.css.map */

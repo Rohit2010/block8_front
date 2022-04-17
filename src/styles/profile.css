@@ -1,0 +1,100 @@
+.profile {
+  background-color: #3e3d53;
+  width: 100%;
+  margin-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile .MuiImageList-root {
+  overflow-y: hidden;
+}
+
+.profile .profile_header {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile .profile_header .followButton {
+  color: black;
+  background-color: #f9c904;
+  font-size: medium;
+  font-weight: 600;
+  padding: 3px 15px 3px 15px;
+  width: 50%;
+  border-width: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 10px 10px 5px -3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px -3px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+
+.profile .profile_header .avatar_profile {
+  background-color: #f9c904;
+  border: 1px;
+  border-color: black;
+  color: black;
+  width: 70px;
+  height: 70px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.profile .profile_header .petName {
+  color: white;
+}
+
+.profile .profile_header .ownerName {
+  color: #dddddd;
+}
+
+.profile .profile_header .follow_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  font-size: 19px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.profile .profile_header .follow_container .follow_info {
+  margin: 25px 15px 20px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile .profile_header .follow_container .follow_info .follow_head {
+  margin: 5px;
+}
+/*# sourceMappingURL=profile.css.map */
