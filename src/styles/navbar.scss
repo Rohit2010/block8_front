@@ -1,0 +1,18 @@
+.MuiAppBar-root {
+  background-color: black;
+  position: sticky;
+  height: 60px;
+  .MuiBadge-root{
+      background-color: "#f9c904";
+      color: black;
+  }
+  .nav-link{
+      margin:10px;
+      font-size: 1.2em;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color:white;
+        text-decoration: none;
+      
+      
+  }
+}

@@ -1,0 +1,14 @@
+body {
+  background-color: #3e3d53;
+}
+.home_container {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  margin-top: 4%;
+  // height: 100vh;
+  flex-direction: column;
+  overflow: auto;
+  background-color: #3e3d53;
+}

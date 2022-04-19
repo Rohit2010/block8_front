@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAA;EACN,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,GAAG;CAWf;;AAbD,AAGI,UAHM,CAGN,UAAU,CAAC;EACP,MAAM,EAAE,GAAG;EACX,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,GAAG;EACV,aAAa,EAAE,GAAG;EAClB,OAAO,EAAE,GAAG;EACZ,YAAY,EAAE,KAAK;EACnB,YAAY,EAAE,IAAI;EAClB,SAAS,EAAE,IAAI;CAChB",
+    "sources": [
+        "chatList.scss"
+    ],
+    "names": [],
+    "file": "chatList.css"
+}

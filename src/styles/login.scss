@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    // background-color: #7393B3;
+    background-image: url("../assets/background.jpg");
+  height: 100vh;
+  background-size: cover;
+  width: 100%;
+  margin-top: 5%;
+  input:focus {
+    outline: none;
+  }
+
+  select:focus {
+    outline: none;
+  }
+
+  .selectOption {
+    margin: 5px;
+    height: 45px;
+    width: 52%;
+    border-radius: 8px;
+    padding: 5px;
+    border-width: 1.8px;
+    border-color: black;
+    font-size: 16px;
+  }
+  .login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+
+    .textFeild {
+      margin: 5px;
+      height: 35px;
+      width: 50%;
+      border-radius: 8px;
+      padding: 5px;
+      border-width: 1.8px;
+      border-color: grey;
+      font-size: 16px;
+    }
+    .loginText {
+      font-family: "Pacifico";
+      font-size: 24px;
+      color: black;
+    }
+    .loginButton {
+      margin: 5px;
+      height: 40px;
+      width: 52.5%;
+      border-radius: 8px;
+      background-color: black;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      //   padding: 5px;
+      cursor: pointer;
+    }
+    .emergencyButton {
+      margin: 5px;
+      height: 40px;
+      width: 52.5%;
+      border-radius: 8px;
+      background-color: red;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      border: none;
+    }
+  }
+}
