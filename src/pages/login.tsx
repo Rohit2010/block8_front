@@ -6,6 +6,7 @@ import "../styles/login.scss";
 import { ToastContainer, toast } from "react-toastify";
 import PrimarySearchAppBar from "../components/Navbar";
 import { AuthContext } from "../context/authContext";
+import { validEmail, validPassword } from "../utils/regex";
 export interface ILoginProps {}
 
 export default function Login(props: ILoginProps) {
@@ -16,10 +17,22 @@ export default function Login(props: ILoginProps) {
     password: "Rohit2010@",
   });
   const onSubmit = async () => {
-    await axiosRequest
-      .post("/login", state)
-      .then(async (res) => {
-        // toast();
+    console.log(state);
+    const isEmailValid = validEmail.test(state.ownerEmail);
+    const isPasswordValid = validPassword.test(state.password);
+
+    if (!isEmailValid) {
+      toast("Email is Invalid");
+    }
+    if (!isPasswordValid) {
+      toast(
+        "Password must contains min 8 characters , 1 Uppercase , 1 special character and 1 number"
+      );
+    }
+
+    if (isEmailValid && isPasswordValid) {
+      try {
+        const res = await axiosRequest.post("/login", state);
         setUser(res.data);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -27,9 +40,15 @@ export default function Login(props: ILoginProps) {
         localStorage.setItem("petName", res.data.user.petName);
         localStorage.setItem("ownerName", res.data.user.ownerName);
         navigate("/");
-        window.location.reload();
-      })
-      .catch((err) => toast(err));
+        window.location.reload()
+
+      } catch (err:any) {
+        console.log(err.message);
+        toast("something went wrong");
+      }
+    }
+
+    
   };
   const onHandleChange = (evt: any) => {
     const value = evt.target.value;
@@ -65,9 +84,14 @@ export default function Login(props: ILoginProps) {
           <button className="loginButton" onClick={() => onSubmit()}>
             Login
           </button>
-          <span style={{ marginTop: "5px", color: "black" , fontWeight:"bold"}}>
+          <span
+            style={{ marginTop: "5px", color: "black", fontWeight: "bold" }}
+          >
             Don't have an Account ?{" "}
-            <a href="/signup" style={{ color: "white" }}>
+            <a
+              onClick={() => navigate("/signup")}
+              style={{ color: "white", cursor: "pointer" }}
+            >
               SignUp
             </a>
           </span>

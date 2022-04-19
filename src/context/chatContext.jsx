@@ -5,6 +5,7 @@ export const ChatProvider = ({ children }) => {
   const [searchFrndInput, setSearchFrndInput] = React.useState();
   const [currentChat, setCurrentChat] = React.useState();
   const [arrivalMessage, setArrivalMessage] = React.useState([]);
+  const [onlineUsers, setOnlineUsers] = React.useState();
 
   return (
     <ChatContext.Provider
@@ -15,6 +16,8 @@ export const ChatProvider = ({ children }) => {
         setCurrentChat,
         arrivalMessage,
         setArrivalMessage,
+        onlineUsers,
+        setOnlineUsers,
       }}
     >
       {children}

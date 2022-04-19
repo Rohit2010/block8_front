@@ -6,8 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import PrimarySearchAppBar from "../components/Navbar";
+import { validEmail, validPassword } from "../utils/regex";
 export interface ISignUpProps {}
-
 export default function SignUp(props: ISignUpProps) {
   const [state, setState] = React.useState({
     petName: "",
@@ -19,14 +19,39 @@ export default function SignUp(props: ISignUpProps) {
   const navigate = useNavigate();
   const onSubmit = async () => {
     console.log(state);
-    await axiosRequest
-      .post("/signup", state)
-      .then(async (res) => {
-        // console.log(res);
-        // navigate("/login")
-        await toast("Account created");
-      })
-      .catch((err) => toast("something went wrong"));
+    const isEmailValid = validEmail.test(state.ownerEmail);
+    const isPasswordValid = validPassword.test(state.password);
+    if (!state) {
+      toast("All fields are required");
+    } else {
+      if (!isEmailValid) {
+        toast("Email is Invalid");
+      }
+      if (!isPasswordValid) {
+        toast(
+          "Password must contains min 8 characters , 1 Uppercase , 1 special character and 1 number"
+        );
+      }
+      if (!state.petCategory) {
+        toast("Pet category is required");
+      }
+      if (!state.ownerName) {
+        toast("Owner Name is required");
+      }
+      if (!state.petName) {
+        toast("Pet Name is required");
+      }
+      if (isEmailValid && isPasswordValid && state) {
+        try {
+          const res = await axiosRequest.post("/signup", state);
+          toast("Account created successfully");
+          navigate("/login")
+        } catch (err) {
+          console.log(err);
+          toast("something went wrong");
+        }
+      }
+    }
   };
   const onHandleChange = (evt: any) => {
     const value = evt.target.value;
@@ -68,7 +93,7 @@ export default function SignUp(props: ISignUpProps) {
           <select
             placeholder="Pet Category"
             name="petCategory"
-            className="selectOption"
+            className="selecttextFeild"
             onChange={onHandleChange}
           >
             <option disabled defaultChecked>
@@ -91,9 +116,14 @@ export default function SignUp(props: ISignUpProps) {
           <button className="loginButton" onClick={() => onSubmit()}>
             Sign Up
           </button>
-          <span style={{ marginTop: "3px" , color:"black", fontWeight:"bold"}}>
+          <span
+            style={{ marginTop: "3px", color: "black", fontWeight: "bold" }}
+          >
             Already have an account?
-            <a href="/login" style={{color:"white"}}> Login</a>
+            <a href="/login" style={{ color: "white" }}>
+              {" "}
+              Login
+            </a>
           </span>
         </div>
       </div>

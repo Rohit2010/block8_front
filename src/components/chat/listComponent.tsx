@@ -18,13 +18,16 @@ function ListComponent(props: IListComponentProps) {
   const [data, setData] = React.useState<any>();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
-  const { currentChat, setCurrentChat } = React.useContext(ChatContext);
+  const { currentChat, setCurrentChat, onlineUsers } =
+    React.useContext(ChatContext);
+  const [isOnline, setIsOnline] = React.useState<boolean>();
+  const recieversId = props?.eachConversation?.members?.filter(
+    (id: string) => id !== userId
+  );
+  //its an array recieversId[0] is exact recievers id
   const getUserData = async () => {
-    const Id = props?.eachConversation?.members?.filter(
-      (id: string) => id !== userId
-    );
     try {
-      const userData = await axiosRequest.get(`profile/${Id[0]}`);
+      const userData = await axiosRequest.get(`profile/${recieversId[0]}`);
       console.log(userData);
       setData(userData.data);
     } catch (err) {
@@ -41,6 +44,17 @@ function ListComponent(props: IListComponentProps) {
       return false;
     }
   };
+  const checkOnline = () => {
+    const check = onlineUsers?.some(
+      (user: any) => user?.userId === recieversId[0]
+    );
+    if (check) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <>
       <ListItem
@@ -59,15 +73,34 @@ function ListComponent(props: IListComponentProps) {
         key={data?.user?._id}
       >
         <ListItemAvatar>
-          <StyledBadge
-            overlap="circular"
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "right",
-            }}
-            variant="dot"
-          >
-            {" "}
+          {checkOnline() && (
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              variant="dot"
+            >
+              {" "}
+              <Avatar
+                alt="Remy Sharp"
+                onClick={() => navigate(`/profile/${data?.user?._id}`)}
+                sx={{
+                  bgcolor: "#f9c904",
+                  border: "1px",
+                  borderColor: "black",
+                  color: "black",
+                  fontWeight: "700",
+                  cursor: "pointer",
+                }}
+                aria-label="recipe"
+              >
+                {data?.user?.petName.toUpperCase().charAt(0)}
+              </Avatar>
+            </StyledBadge>
+          )}
+          {!checkOnline() && (
             <Avatar
               alt="Remy Sharp"
               onClick={() => navigate(`/profile/${data?.user?._id}`)}
@@ -83,7 +116,7 @@ function ListComponent(props: IListComponentProps) {
             >
               {data?.user?.petName.toUpperCase().charAt(0)}
             </Avatar>
-          </StyledBadge>
+          )}
         </ListItemAvatar>
         <ListItemText
           primary={

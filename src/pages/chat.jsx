@@ -13,17 +13,24 @@ import { SOCKET_URI } from "../apiUrl";
 // export interface IChatProps {}
 
 export default function Chat() {
-  const [onlineUsers, setOnlineUsers] = React.useState();
   const [messages, setMessages] = React.useState();
   const [conversations, setConversations] = React.useState();
   const [newMessage, setNewMessage] = React.useState();
-  const socket = io(SOCKET_URI);
+  const socket = io(SOCKET_URI, {
+    autoConnect:false
+  });
   const user = JSON.parse(localStorage.getItem("user"));
   const messageBox = React.useRef(null);
   const divRef = React.useRef(null);
 
-  const { currentChat, setCurrentChat, arrivalMessage, setArrivalMessage } =
-    React.useContext(ChatContext);
+  const {
+    currentChat,
+    setCurrentChat,
+    arrivalMessage,
+    setArrivalMessage,
+    onlineUsers,
+    setOnlineUsers,
+  } = React.useContext(ChatContext);
 
   //get all message by convoId
   React.useEffect(() => {
@@ -40,13 +47,16 @@ export default function Chat() {
   }, [currentChat]);
 
   //get all conversations
-  React.useEffect(async () => {
-    try {
-      const convo = await axiosRequest.get(`/chat/users/${user._id}`);
-      setConversations(convo.data);
-    } catch (err) {
-      console.log(err);
-    }
+  React.useEffect(() => {
+    const getConvo = async () => {
+      try {
+        const convo = await axiosRequest.get(`/chat/users/${user._id}`);
+        setConversations(convo.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getConvo();
   }, [currentChat]);
 
   // get all online users from socket.io
@@ -87,11 +97,13 @@ export default function Chat() {
       console.log(err);
     }
     const receiverId = currentChat?.members?.filter((id) => user?._id !== id);
-    socket.emit("sendMessage", {
-      senderId: user._id,
-      receiverId: receiverId[0],
-      text: newMessage,
-    });
+    if (currentChat) {
+      socket.emit("sendMessage", {
+        senderId: user._id,
+        receiverId: receiverId[0],
+        text: newMessage,
+      });
+    }
 
     console.log(currentChat);
 
@@ -100,8 +112,9 @@ export default function Chat() {
   React.useEffect(() => {
     arrivalMessage &&
       currentChat?.members?.includes(arrivalMessage.senderId) &&
+      // export interface IChatProps {}
       setMessages((prev) => [...prev, arrivalMessage]);
-      console.log(arrivalMessage)
+    console.log(arrivalMessage);
   }, [arrivalMessage, currentChat]);
   React.useEffect(() => {
     divRef?.current?.scrollIntoView({ behavior: "smooth" });
