@@ -16,6 +16,7 @@ export default function Chat() {
   const [messages, setMessages] = React.useState();
   const [conversations, setConversations] = React.useState();
   const [newMessage, setNewMessage] = React.useState();
+  const [arrivalMessage, setArrivalMessage] = React.useState();
   const socket = io(SOCKET_URI, {
     autoConnect: true,
   });
@@ -26,8 +27,7 @@ export default function Chat() {
   const {
     currentChat,
     setCurrentChat,
-    arrivalMessage,
-    setArrivalMessage,
+    
     onlineUsers,
     setOnlineUsers,
   } = React.useContext(ChatContext);
@@ -84,12 +84,11 @@ export default function Chat() {
   }, []);
   React.useEffect(() => {
     console.log("arrival......................");
-    if (arrivalMessage) {
+    if (arrivalMessage && messages) {
       // export interface IChatProps {}
       setMessages([...messages, arrivalMessage]);
     }
     console.log({ messages });
-    console.log(arrivalMessage);
   }, [arrivalMessage, currentChat]);
 
   //send message

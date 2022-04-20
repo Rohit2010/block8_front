@@ -110,7 +110,7 @@ const SearchResults = (props) => {
                           <Typography
                             sx={{ display: "inline", color: "white" }}
                           >
-                            {pet?.petName}
+                            {pet?.petName}@{pet?.petCategory}
                           </Typography>
                         }
                         secondary={

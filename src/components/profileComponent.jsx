@@ -57,7 +57,7 @@ const ProfileComponent = (props) => {
         </Avatar>
         {props.loggedUser && (
           <h3 className="petName">
-            {props.loggedUser?.petName?.toUpperCase()}
+            {props.loggedUser?.petName?.toUpperCase()}@{props?.loggedUser?.petCategory}
           </h3>
         )}
         <span className="ownerName">{props.loggedUser?.ownerName}</span>
