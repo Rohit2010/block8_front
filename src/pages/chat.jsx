@@ -17,7 +17,7 @@ export default function Chat() {
   const [conversations, setConversations] = React.useState();
   const [newMessage, setNewMessage] = React.useState();
   const socket = io(SOCKET_URI, {
-    autoConnect:false
+    autoConnect: true,
   });
   const user = JSON.parse(localStorage.getItem("user"));
   const messageBox = React.useRef(null);
@@ -72,14 +72,25 @@ export default function Chat() {
   React.useEffect(() => {
     socket.on("getMessage", (data) => {
       playAudio();
-
+      console.log(data);
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
         createdAt: Date.now(),
       });
+      // setMessages([...messages, arrivalMessage]);
+      console.log(messages);
     });
   }, []);
+  React.useEffect(() => {
+    console.log("arrival......................");
+    if (arrivalMessage) {
+      // export interface IChatProps {}
+      setMessages([...messages, arrivalMessage]);
+    }
+    console.log({ messages });
+    console.log(arrivalMessage);
+  }, [arrivalMessage, currentChat]);
 
   //send message
   const sendMessage = async () => {
@@ -96,11 +107,12 @@ export default function Chat() {
     } catch (err) {
       console.log(err);
     }
-    const receiverId = currentChat?.members?.filter((id) => user?._id !== id);
+    const receiverId = currentChat?.members?.find((id) => user?._id !== id);
+    console.log({ receiverId });
     if (currentChat) {
       socket.emit("sendMessage", {
         senderId: user._id,
-        receiverId: receiverId[0],
+        receiverId: receiverId,
         text: newMessage,
       });
     }
@@ -109,13 +121,7 @@ export default function Chat() {
 
     setNewMessage("");
   };
-  React.useEffect(() => {
-    arrivalMessage &&
-      currentChat?.members?.includes(arrivalMessage.senderId) &&
-      // export interface IChatProps {}
-      setMessages((prev) => [...prev, arrivalMessage]);
-    console.log(arrivalMessage);
-  }, [arrivalMessage, currentChat]);
+
   React.useEffect(() => {
     divRef?.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);

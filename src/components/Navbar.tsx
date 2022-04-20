@@ -251,18 +251,18 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {isAuthenticated() && (
-              <a href="/" className="nav-link">
+              <a onClick={() => navigate("/")} className="nav-link">
                 Home
               </a>
             )}
 
             {!isAuthenticated() && (
-              <a href="/login" className="nav-link">
+              <a onClick={() => navigate("/login")} className="nav-link">
                 Login
               </a>
             )}
             {!isAuthenticated() && (
-              <a href="/signup" className="nav-link">
+              <a onClick={() => navigate("/signup")} className="nav-link">
                 SignUp
               </a>
             )}
